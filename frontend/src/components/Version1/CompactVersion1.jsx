@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Linkedin, Github, Mail, Briefcase, Code, User, Sparkles } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -9,6 +9,8 @@ import { Toaster } from '../ui/toaster';
 
 const CompactVersion1 = () => {
   const [activeTab, setActiveTab] = useState('story');
+  const [prevTab, setPrevTab] = useState('story');
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
@@ -28,85 +30,107 @@ const CompactVersion1 = () => {
     { id: 'contact', label: 'Contact', icon: Mail }
   ];
 
+  const handleTabChange = (newTab) => {
+    if (newTab === activeTab) return;
+    setIsTransitioning(true);
+    setPrevTab(activeTab);
+    
+    setTimeout(() => {
+      setActiveTab(newTab);
+      setIsTransitioning(false);
+    }, 150);
+  };
+
+  const getAnimationClass = () => {
+    const tabOrder = ['story', 'experience', 'projects', 'contact'];
+    const prevIndex = tabOrder.indexOf(prevTab);
+    const currentIndex = tabOrder.indexOf(activeTab);
+    
+    if (currentIndex > prevIndex) {
+      return 'animate-slideRight';
+    } else {
+      return 'animate-slideLeft';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className=\"min-h-screen bg-white overflow-x-hidden\">
       {/* Hero Section - Full Screen */}
-      <section className="h-screen flex items-center justify-center px-6 relative">
-        <div className="max-w-6xl w-full">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-block">
-                <span className="text-sm font-medium tracking-wider text-gray-600 uppercase">
+      <section className=\"h-screen flex items-center justify-center px-4 md:px-6 relative\">
+        <div className=\"max-w-6xl w-full\">
+          <div className=\"grid md:grid-cols-2 gap-8 md:gap-12 items-center\">
+            <div className=\"space-y-4 md:space-y-6\">
+              <div className=\"inline-block\">
+                <span className=\"text-xs md:text-sm font-medium tracking-wider text-gray-500 uppercase\">
                   Product Manager • BSFI • Tech Enthusiast
                 </span>
               </div>
-              <h1 className="text-6xl md:text-7xl font-light tracking-tight text-black leading-none">
+              <h1 className=\"text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-black leading-none\">
                 {portfolioData.name}
               </h1>
-              <p className="text-xl text-gray-600 font-light leading-relaxed">
+              <p className=\"text-lg md:text-xl text-gray-600 font-light leading-relaxed\">
                 {portfolioData.tagline}
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className=\"text-base md:text-lg text-gray-700 leading-relaxed\">
                 {portfolioData.story.intro}
               </p>
-              <div className="flex gap-4 pt-4">
-                <div className="flex gap-3">
-                  <a href={`https://${portfolioData.linkedin}`} target="_blank" rel="noopener noreferrer" 
-                     className="p-3 border border-gray-300 rounded-lg hover:border-black transition-all duration-300 hover:scale-110">
-                    <Linkedin className="h-5 w-5 text-gray-700" />
-                  </a>
-                  <a href={`https://${portfolioData.github}`} target="_blank" rel="noopener noreferrer"
-                     className="p-3 border border-gray-300 rounded-lg hover:border-black transition-all duration-300 hover:scale-110">
-                    <Github className="h-5 w-5 text-gray-700" />
-                  </a>
-                  <a href={`mailto:${portfolioData.email}`}
-                     className="p-3 border border-gray-300 rounded-lg hover:border-black transition-all duration-300 hover:scale-110">
-                    <Mail className="h-5 w-5 text-gray-700" />
-                  </a>
-                </div>
+              <div className=\"flex gap-3 pt-4\">
+                <a href={`https://${portfolioData.linkedin}`} target=\"_blank\" rel=\"noopener noreferrer\" 
+                   className=\"p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-black hover:border-black transition-premium group\">
+                  <Linkedin className=\"h-4 w-4 md:h-5 md:w-5 text-gray-600 group-hover:text-white transition-premium\" />
+                </a>
+                <a href={`https://${portfolioData.github}`} target=\"_blank\" rel=\"noopener noreferrer\"
+                   className=\"p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-black hover:border-black transition-premium group\">
+                  <Github className=\"h-4 w-4 md:h-5 md:w-5 text-gray-600 group-hover:text-white transition-premium\" />
+                </a>
+                <a href={`mailto:${portfolioData.email}`}
+                   className=\"p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-black hover:border-black transition-premium group\">
+                  <Mail className=\"h-4 w-4 md:h-5 md:w-5 text-gray-600 group-hover:text-white transition-premium\" />
+                </a>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
+            <div className=\"relative\">
+              <div className=\"aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-xl\">
                 <img 
-                  src="https://images.unsplash.com/photo-1521870749737-92928aafcc21?w=800" 
-                  alt="AJ"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  src=\"https://images.unsplash.com/photo-1521870749737-92928aafcc21?w=800\" 
+                  alt=\"AJ\"
+                  className=\"w-full h-full object-cover hover:scale-105 transition-premium\"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-black opacity-5 rounded-2xl -z-10"></div>
+              <div className=\"absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-24 h-24 md:w-32 md:h-32 bg-black opacity-5 rounded-2xl -z-10\"></div>
             </div>
           </div>
         </div>
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-gray-400 rounded-full"></div>
+        <div className=\"absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block\">
+          <div className=\"w-6 h-10 border-2 border-gray-300 rounded-full flex items-start justify-center p-2\">
+            <div className=\"w-1 h-3 bg-gray-300 rounded-full\"></div>
           </div>
         </div>
       </section>
 
       {/* Dynamic Content Section - Full Screen */}
-      <section className="min-h-screen flex flex-col px-6 py-12 bg-gray-50">
-        <div className="max-w-6xl w-full mx-auto flex-1 flex flex-col">
-          {/* Tab Navigation */}
-          <div className="flex justify-center gap-4 mb-12">
+      <section className=\"min-h-screen flex flex-col px-4 md:px-6 py-8 md:py-12 bg-gray-50\">
+        <div className=\"max-w-6xl w-full mx-auto flex-1 flex flex-col\">
+          {/* Muted Tab Navigation */}
+          <div className=\"flex justify-center gap-2 md:gap-3 mb-8 md:mb-12 flex-wrap\">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-medium transition-premium text-sm md:text-base ${
                     activeTab === tab.id
-                      ? 'bg-black text-white shadow-lg scale-105'
-                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                      ? 'bg-black text-white shadow-sm'
+                      : 'bg-white/60 text-gray-500 hover:bg-white hover:text-gray-900 border border-gray-200/50'
                   }`}
                 >
-                  <Icon className="h-5 w-5" />
-                  <span className="hidden sm:inline">{tab.label}</span>
+                  <Icon className=\"h-4 w-4 md:h-5 md:w-5\" />
+                  <span className=\"hidden sm:inline\">{tab.label}</span>
                 </button>
               );
+            })}
             })}
           </div>
 
