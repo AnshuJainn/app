@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Version1 from "./Version1";
-import Version2 from "./Version2";
+import CompactVersion1 from "./components/Version1/CompactVersion1";
+import CompactVersion2 from "./components/Version2/CompactVersion2";
 import { Button } from "./components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -17,7 +17,7 @@ const ChooseDesign = () => {
             Choose Your Design
           </h1>
           <p className="text-xl text-slate-600">
-            Select the design that best represents your professional brand
+            Two scrolls, dynamic content - Select your professional aesthetic
           </p>
         </div>
 
@@ -43,7 +43,7 @@ const ChooseDesign = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-black rounded-full mt-2"></span>
-                  <span>Subtle animations & clean layouts</span>
+                  <span>Only 2 scrolls - Content transitions in place</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-black rounded-full mt-2"></span>
@@ -81,7 +81,7 @@ const ChooseDesign = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2"></span>
-                  <span>Rich animations & engaging layouts</span>
+                  <span>Only 2 scrolls - Dynamic tab navigation</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2"></span>
@@ -101,7 +101,7 @@ const ChooseDesign = () => {
 
         <div className="mt-12 text-center">
           <p className="text-slate-500">
-            Don't worry, you can switch between versions anytime during development
+            Compact design with dynamic content - Hero + Tabbed Content (2 scrolls total)
           </p>
         </div>
       </div>
@@ -115,8 +115,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ChooseDesign />} />
-          <Route path="/version1" element={<Version1 />} />
-          <Route path="/version2" element={<Version2 />} />
+          <Route path="/version1" element={<CompactVersion1 />} />
+          <Route path="/version2" element={<CompactVersion2 />} />
         </Routes>
       </BrowserRouter>
     </div>
