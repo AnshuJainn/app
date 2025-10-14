@@ -1,0 +1,50 @@
+name: Build and Deploy FastAPI + React + Mongo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up Python for FastAPI
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # 3. Install FastAPI dependencies
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+
+      # 4. Install Node.js for React
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 5. Install frontend dependencies
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      # 6. Build React frontend
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+      # 7. Deploy steps (example: push Docker image or copy files)
+      - name: Deploy (placeholder)
+        run: |
+          echo "Replace this with your actual deployment command"
