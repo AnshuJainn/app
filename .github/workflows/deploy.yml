@@ -1,4 +1,4 @@
-name: Build and Deploy FastAPI + React + Mongo
+nname: Build and Deploy FastAPI + React + Mongo
 
 on:
   push:
@@ -20,13 +20,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      # 3. Install FastAPI dependencies
+      # 3. Install backend dependencies
       - name: Install backend dependencies
         run: |
           cd backend
           pip install -r requirements.txt
 
-      # 4. Install Node.js for React
+      # 4. Set up Node.js for React
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -44,7 +44,11 @@ jobs:
           cd frontend
           npm run build
 
-      # 7. Deploy steps (example: push Docker image or copy files)
-      - name: Deploy (placeholder)
+      # 7. Deploy frontend to GitHub Pages
+      - name: Deploy frontend to GitHub Pages
         run: |
-          echo "Replace this with your actual deployment command"
+          cd frontend
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          npm install -g gh-pages
+          npm run deploy
