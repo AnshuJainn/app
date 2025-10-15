@@ -44,12 +44,16 @@ jobs:
           cd frontend
           npm run build
 
-      # 7. Deploy frontend to GitHub Pages
-      - name: Deploy frontend to GitHub Pages
+           # 7. Prepare Git identity for gh-pages
+      - name: Configure Git identity
         run: |
-          cd frontend
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 8. Deploy frontend to GitHub Pages
+      - name: Deploy frontend
+        working-directory: frontend
+        run: |
           npm install -g gh-pages
           npm run deploy
 
