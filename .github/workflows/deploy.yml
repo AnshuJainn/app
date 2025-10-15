@@ -44,7 +44,7 @@ jobs:
           cd frontend
           npm run build
 
-      # 7. Deploy frontend to GitHub Pages (bulletproof)
+      # 7. Deploy frontend to GitHub Pages
       - name: Deploy frontend to GitHub Pages
         working-directory: frontend
         run: |
