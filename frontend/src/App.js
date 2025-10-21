@@ -1,6 +1,5 @@
-import { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
 import CompactVersion1 from "./components/Version1/CompactVersion1";
 import CompactVersion2 from "./components/Version2/CompactVersion2";
 import { Button } from "./components/ui/button";
@@ -112,13 +111,13 @@ const ChooseDesign = () => {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<ChooseDesign />} />
           <Route path="/version1" element={<CompactVersion1 />} />
           <Route path="/version2" element={<CompactVersion2 />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
