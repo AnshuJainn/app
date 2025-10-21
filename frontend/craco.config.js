@@ -63,6 +63,9 @@ const webpackConfig = {
         };
       }
 
+      // Remove ForkTsCheckerWebpackPlugin (not needed for JS-only projects and can cause ajv/schema-utils conflicts)
+      webpackConfig.plugins = webpackConfig.plugins.filter(plugin => plugin.constructor && plugin.constructor.name !== 'ForkTsCheckerWebpackPlugin');
+
       // Add health check plugin to webpack if enabled
       if (config.enableHealthCheck && healthPluginInstance) {
         webpackConfig.plugins.push(healthPluginInstance);
