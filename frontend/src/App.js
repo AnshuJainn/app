@@ -1,9 +1,30 @@
 import "./App.css";
 import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
+import React from "react";
 import CompactVersion1 from "./components/Version1/CompactVersion1";
 import CompactVersion2 from "./components/Version2/CompactVersion2";
 import { Button } from "./components/ui/button";
 import { ArrowRight } from "lucide-react";
+import GlobalCommandMenu from "./components/GlobalCommandMenu";
+import Resume from "./pages/Resume";
+
+function CommandMenuProvider({ children }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      {children}
+      <GlobalCommandMenu open={open} setOpen={setOpen} />
+      <button
+        aria-label="Open command menu"
+        onClick={() => setOpen(true)}
+        className="fixed bottom-6 right-6 z-50 rounded-full shadow-lg bg-black text-white px-4 py-3 hover:bg-gray-800 transition-premium hidden md:flex items-center gap-2"
+      >
+        <span className="text-sm">Search</span>
+        <span className="text-[10px] opacity-80">Ctrl/⌘ K</span>
+      </button>
+    </>
+  );
+}
 
 const ChooseDesign = () => {
   const navigate = useNavigate();
@@ -112,11 +133,14 @@ function App() {
   return (
     <div className="App">
       <HashRouter>
-        <Routes>
-          <Route path="/" element={<ChooseDesign />} />
-          <Route path="/version1" element={<CompactVersion1 />} />
-          <Route path="/version2" element={<CompactVersion2 />} />
-        </Routes>
+        <CommandMenuProvider>
+          <Routes>
+            <Route path="/" element={<ChooseDesign />} />
+            <Route path="/version1" element={<CompactVersion1 />} />
+            <Route path="/version2" element={<CompactVersion2 />} />
+            <Route path="/resume" element={<Resume />} />
+          </Routes>
+        </CommandMenuProvider>
       </HashRouter>
     </div>
   );
