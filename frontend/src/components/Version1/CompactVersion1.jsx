@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Linkedin, Github, Mail, Briefcase, Code, User } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -29,6 +29,22 @@ const CompactVersion1 = () => {
     { id: 'projects', label: 'Projects', icon: Code },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
+
+  // Sync with ?tab=... from URL (HashRouter)
+  useEffect(() => {
+    const applyFromLocation = () => {
+      const hash = window.location.hash || '#/';
+      const [, query = ''] = hash.split('?');
+      const params = new URLSearchParams(query);
+      const tab = params.get('tab');
+      if (tab && ['story','experience','projects','contact'].includes(tab)) {
+        setActiveTab(tab);
+      }
+    };
+    applyFromLocation();
+    window.addEventListener('hashchange', applyFromLocation);
+    return () => window.removeEventListener('hashchange', applyFromLocation);
+  }, []);
 
   const handleTabChange = (newTab) => {
     if (newTab === activeTab) return;

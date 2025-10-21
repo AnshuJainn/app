@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Linkedin, Github, Mail, Briefcase, Code, User, Sparkles } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -27,6 +27,22 @@ const CompactVersion2 = () => {
     { id: 'projects', label: 'Projects', icon: Code },
     { id: 'contact', label: 'Contact', icon: Mail }
   ];
+
+  // Read ?tab=... from URL hash query and sync
+  useEffect(() => {
+    const applyFromLocation = () => {
+      const hash = window.location.hash || '#/';
+      const [, query = ''] = hash.split('?');
+      const params = new URLSearchParams(query);
+      const tab = params.get('tab');
+      if (tab && ['story','experience','projects','contact'].includes(tab)) {
+        setActiveTab(tab);
+      }
+    };
+    applyFromLocation();
+    window.addEventListener('hashchange', applyFromLocation);
+    return () => window.removeEventListener('hashchange', applyFromLocation);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
