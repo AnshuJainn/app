@@ -6,45 +6,37 @@ const ProjectCard = ({ project, gradient }) => {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div
-      className={`relative w-full h-96 perspective`}
-      onClick={() => setFlipped(!flipped)}
-    >
-      <div
-        className={`relative w-full h-full transition-transform duration-700 transform-style preserve-3d ${
-          flipped ? 'rotate-y-180' : ''
-        } cursor-pointer`}
-      >
-        {/* Front Side */}
-        <div className="absolute w-full h-full backface-hidden bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-          <div className="aspect-video bg-slate-100 overflow-hidden relative">
+    <div className="flip-card-container h-96 md:h-80" onClick={() => setFlipped(!flipped)}>
+      <div className={`flip-card ${flipped ? 'flipped' : ''}`}>
+        
+        {/* Front */}
+        <div className="flip-card-front bg-white border border-slate-200 shadow-lg rounded-3xl">
+          <div className="aspect-video overflow-hidden relative">
             {project.image ? (
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
                 No Image Available
               </div>
             )}
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`}
-            ></div>
+            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`}></div>
           </div>
           <div className="p-6">
             <h3 className="text-2xl font-bold text-slate-900 mb-2">{project.title}</h3>
-            <p className="text-slate-600 leading-relaxed">{project.description}</p>
+            <p className="text-slate-600">{project.description}</p>
           </div>
         </div>
 
-        {/* Back Side */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200 p-6 flex flex-col justify-between">
+        {/* Back */}
+        <div className="flip-card-back bg-white border border-slate-200 shadow-lg rounded-3xl">
           <div>
             <h3 className="text-2xl font-bold text-slate-900 mb-4">{project.title}</h3>
-            <p className="text-slate-600 leading-relaxed mb-4">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-6">
+            <p className="text-slate-600 mb-4">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mb-4">
               {project.tech.map((tech, idx) => (
                 <span
                   key={idx}
