@@ -1,11 +1,12 @@
-name: Deploy frontend to gh-pages
+name: Deploy frontend to gh-pages (recommended)
 on:
   push:
     branches:
       - main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
 
 jobs:
   build-and-deploy:
@@ -13,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,8 +30,8 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-      - name: Deploy to gh-pages
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
-        working-directory: frontend
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/build
