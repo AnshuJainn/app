@@ -6,23 +6,28 @@ const ProjectCard = ({ project, gradient }) => {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="flip-card-container w-full h-96" onClick={() => setFlipped(!flipped)}>
-      <div className={`flip-card ${flipped ? 'flipped' : ''} cursor-pointer`}>
+    <div
+      className="flip-card-container w-full h-96 cursor-pointer"
+      onClick={() => setFlipped(!flipped)}
+    >
+      <div className={`flip-card ${flipped ? 'flipped' : ''}`}>
         {/* Front Side */}
-        <div className="flip-card-front relative w-full h-full rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+        <div className="flip-card-front bg-white overflow-hidden shadow-lg border border-slate-200">
           <div className="aspect-video bg-slate-100 overflow-hidden relative">
             {project.image ? (
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500"
+                className="w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
                 No Image Available
               </div>
             )}
-            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`}></div>
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`}
+            ></div>
           </div>
           <div className="p-6">
             <h3 className="text-2xl font-bold text-slate-900 mb-2">{project.title}</h3>
@@ -31,7 +36,7 @@ const ProjectCard = ({ project, gradient }) => {
         </div>
 
         {/* Back Side */}
-        <div className="flip-card-back w-full h-full rounded-3xl overflow-hidden shadow-lg border border-slate-200 p-6 flex flex-col justify-between">
+        <div className="flip-card-back bg-white shadow-lg border border-slate-200 p-6 flex flex-col justify-between">
           <div>
             <h3 className="text-2xl font-bold text-slate-900 mb-4">{project.title}</h3>
             <p className="text-slate-600 leading-relaxed mb-4">{project.description}</p>
