@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: '18'
 
-      # 5. Install frontend dependencies — use npm ci if package-lock.json exists, otherwise fall back to npm install
+      # 5. Install frontend dependencies — use npm ci if lockfile exists, otherwise fall back to npm install
       - name: Install frontend dependencies
         run: |
           cd frontend
