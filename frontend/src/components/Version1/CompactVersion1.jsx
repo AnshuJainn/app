@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { useToast } from '../../hooks/use-toast';
-import { portfolioData } from '../../mockData';
+import { PortfolioData } from '../../mockData';
 import { Toaster } from '../ui/toaster';
 
 const CompactVersion1 = () => {
@@ -92,14 +92,6 @@ const CompactVersion1 = () => {
                   className="p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-black hover:border-black transition-premium group"
                 >
                   <Linkedin className="h-4 w-4 md:h-5 md:w-5 text-gray-600 group-hover:text-white transition-premium" />
-                </a>
-                <a
-                  href={`https://${portfolioData.github}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-black hover:border-black transition-premium group"
-                >
-                  <Github className="h-4 w-4 md:h-5 md:w-5 text-gray-600 group-hover:text-white transition-premium" />
                 </a>
                 <a
                   href={`mailto:${portfolioData.email}`}
