@@ -291,7 +291,6 @@ const CompactVersion2 = () => {
                         <p className="text-slate-900 font-semibold">Connect with me</p>
                       </div>
                     </a>
-                    </a>
                   </div>
                   <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 shadow-md">
                     <form onSubmit={handleSubmit} className="space-y-4">
