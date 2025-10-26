@@ -55,10 +55,10 @@ jobs:
         working-directory: frontend
         run: |
           npm install -g gh-pages
-
-          # Set Git identity for CI
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Deploy to GitHub Pages
+          
+          # Deploy to GitHub Pages with inline Git author/committer identity
+          GIT_AUTHOR_NAME="github-actions[bot]" \
+          GIT_AUTHOR_EMAIL="github-actions[bot]@users.noreply.github.com" \
+          GIT_COMMITTER_NAME="github-actions[bot]" \
+          GIT_COMMITTER_EMAIL="github-actions[bot]@users.noreply.github.com" \
           gh-pages -d build -r https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
