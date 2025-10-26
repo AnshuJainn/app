@@ -282,7 +282,7 @@ const CompactVersion2 = () => {
                         <p className="text-slate-900 font-semibold">{portfolioData.email}</p>
                       </div>
                     </a>
-                    <a href={`https://${portfolioData.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 bg-gradient-to-br from-white to-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 group">
+                    <a href={`https://www.linkedin.com/in/anshujainpm/}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 bg-gradient-to-br from-white to-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 group">
                       <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
                         <Linkedin className="h-6 w-6 text-white" />
                       </div>
@@ -291,14 +291,6 @@ const CompactVersion2 = () => {
                         <p className="text-slate-900 font-semibold">Connect with me</p>
                       </div>
                     </a>
-                    <a href={`https://${portfolioData.github}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 bg-gradient-to-br from-white to-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 group">
-                      <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                        <Github className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-500">GitHub</p>
-                        <p className="text-slate-900 font-semibold">View projects</p>
-                      </div>
                     </a>
                   </div>
                   <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 shadow-md">
@@ -316,7 +308,7 @@ const CompactVersion2 = () => {
                       <div>
                         <Input 
                           type="email" 
-                          placeholder="your@email.com"
+                          placeholder="anshu.jain@zohomail.in"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
                           required
