@@ -42,7 +42,7 @@ jobs:
       - name: Fix ajv dependency
         run: |
           cd frontend
-          npm install ajv@^6 ajv-keywords@^3
+          npm install ajv@^6 ajv-keywords@^3 --legacy-peer-deps
 
       # 6. Build React frontend
       - name: Build frontend
