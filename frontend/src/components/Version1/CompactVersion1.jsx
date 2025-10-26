@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { useToast } from '../../hooks/use-toast';
-import { PortfolioData } from '../../mockData';
+import { portfolioData } from '../../mockData';
 import { Toaster } from '../ui/toaster';
 
 const CompactVersion1 = () => {
