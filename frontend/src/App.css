@@ -25,13 +25,10 @@
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
+
 /* ----------------- Flip Card Styles ----------------- */
 .flip-card-container {
   perspective: 1000px;
@@ -43,6 +40,7 @@
   transition: transform 0.6s;
   transform-style: preserve-3d;
   position: relative;
+  cursor: pointer;
 }
 
 .flip-card.flipped {
@@ -56,20 +54,19 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: 1rem; /* Tailwind rounded-3xl */
+  overflow: hidden;
 }
 
 .flip-card-back {
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  padding: 1rem;
   background-color: white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-  padding: 1rem;
 }
 
-/* Smooth image zoom on hover */
 .flip-card-front img {
   transition: transform 0.5s;
 }
@@ -78,3 +75,9 @@
   transform: scale(1.05);
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .flip-card {
+    height: 400px;
+  }
+}
