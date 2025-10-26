@@ -12,18 +12,16 @@ const Projects = ({ data }) => {
   return (
     <section className="py-24 px-6 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
             Portfolio
           </div>
           <h2 className="text-5xl font-bold text-slate-900 mb-6">Side Projects</h2>
-          <p className="text-xl text-slate-600">
-            Building in public with modern tools
-          </p>
+          <p className="text-xl text-slate-600">Building in public with modern tools</p>
         </div>
 
-        {/* Projects Grid */}
+        {/* Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {data.projects.map((project, index) => (
             <ProjectCard
@@ -39,4 +37,3 @@ const Projects = ({ data }) => {
 };
 
 export default Projects;
-
