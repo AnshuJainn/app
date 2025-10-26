@@ -1,32 +1,33 @@
+/* Existing App styles */
 .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #0f0f10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ----------------- Flip Card Styles ----------------- */
@@ -40,7 +41,6 @@
   transition: transform 0.6s;
   transform-style: preserve-3d;
   position: relative;
-  cursor: pointer;
 }
 
 .flip-card.flipped {
@@ -54,7 +54,6 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: 1rem; /* Tailwind rounded-3xl */
-  overflow: hidden;
 }
 
 .flip-card-back {
@@ -62,22 +61,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  gap: 0.5rem;
   background-color: white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  padding: 1rem;
 }
 
+/* Smooth image zoom on hover */
 .flip-card-front img {
   transition: transform 0.5s;
 }
 
 .flip-card-front:hover img {
   transform: scale(1.05);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .flip-card {
-    height: 400px;
-  }
 }
