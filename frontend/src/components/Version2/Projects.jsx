@@ -6,7 +6,7 @@ const Projects = ({ data }) => {
     'from-blue-500 to-indigo-500',
     'from-purple-500 to-pink-500',
     'from-green-500 to-emerald-500',
-    'from-orange-500 to-red-500',
+    'from-orange-500 to-red-500'
   ];
 
   return (
