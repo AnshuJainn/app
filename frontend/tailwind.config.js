@@ -78,5 +78,14 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+   plugins: [require("tailwindcss-animate")],
+  safelist: [
+    'from-blue-500', 'to-indigo-500',
+    'from-purple-500', 'to-pink-500',
+    'from-green-500', 'to-emerald-500',
+    'from-orange-500', 'to-red-500',
+    'opacity-0', 'hover:opacity-20',
+    'transition-opacity', 'duration-300',
+    'backface-hidden', 'rotate-y-180', 'perspective'
+  ]
 };
