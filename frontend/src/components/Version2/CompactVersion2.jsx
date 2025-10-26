@@ -69,13 +69,9 @@ const CompactVersion2 = () => {
                 {portfolioData.story.intro}
               </p>
               <div className="flex gap-3 pt-4">
-                <a href={`https://${portfolioData.linkedin}`} target="_blank" rel="noopener noreferrer" 
+                <a href={`https://www.linkedin.com/in/anshujainpm/}`} target="_blank" rel="noopener noreferrer" 
                    className="p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 hover:scale-110 shadow-sm">
                   <Linkedin className="h-5 w-5 text-blue-600" />
-                </a>
-                <a href={`https://${portfolioData.github}`} target="_blank" rel="noopener noreferrer"
-                   className="p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 hover:scale-110 shadow-sm">
-                  <Github className="h-5 w-5 text-slate-700" />
                 </a>
                 <a href={`mailto:${portfolioData.email}`}
                    className="p-3 bg-white border border-slate-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 hover:scale-110 shadow-sm">
@@ -87,7 +83,7 @@ const CompactVersion2 = () => {
               <div className="relative z-10">
                 <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-blue-100 to-indigo-100 shadow-2xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1521870749737-92928aafcc21?w=800" 
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQGIBhHyXduddw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673186432251?e=1762992000&v=beta&t=qHxkh-AcaBuNwh_FamMjedVB_UjpuROSQRIYghjGngE" 
                     alt="AJ"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
