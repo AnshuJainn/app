@@ -57,8 +57,8 @@ jobs:
           npm install -g gh-pages
           
           # Deploy to GitHub Pages with inline Git author/committer identity
-          GIT_AUTHOR_NAME="github-actions[bot]" \
-          GIT_AUTHOR_EMAIL="github-actions[bot]@users.noreply.github.com" \
-          GIT_COMMITTER_NAME="github-actions[bot]" \
-          GIT_COMMITTER_EMAIL="github-actions[bot]@users.noreply.github.com" \
+          GIT_AUTHOR_NAME="AnshuJainn"
+          GIT_AUTHOR_EMAIL="jain30anshu1997@gmail.com"
+          GIT_COMMITTER_NAME="AnshuJainn"
+          GIT_COMMITTER_EMAIL="jain30anshu1997@gmail.com"
           gh-pages -d build -r https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
