@@ -38,6 +38,12 @@ jobs:
           cd frontend
           npm install --legacy-peer-deps
 
+      # 5.5. Fix ajv compatibility for CRACO/webpack
+      - name: Fix ajv dependency
+        run: |
+          cd frontend
+          npm install ajv@^6 ajv-keywords@^3
+
       # 6. Build React frontend
       - name: Build frontend
         run: |
