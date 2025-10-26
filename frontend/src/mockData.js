@@ -1,10 +1,9 @@
 export const portfolioData = {
-  name: "AJ",
+  name: "Anshu Jain",
   title: "Cards Product Manager",
   tagline: "From Traditional Banking Sales to Product | Tech Enthusiast | Weekend Builder",
-  email: "aj@example.com",
-  linkedin: "linkedin.com/in/aj",
-  github: "github.com/aj",
+  email: "anshu.jain@zohomail.in",
+  linkedin: "https://www.linkedin.com/in/anshujainpm/",
   
   story: {
     intro: "5+ years in BSFI, transitioning from sales to product management. While I work in traditional banking with limited tech, my curiosity drives me to build and learn on weekends.",
@@ -30,7 +29,7 @@ export const portfolioData = {
     {
       id: 1,
       role: "Cards Product Manager",
-      company: "AZP (Traditional BSFI)",
+      company: "Kotak Mahindra Bank LTD (Traditional BSFI)",
       period: "2021 - Present (3+ years)",
       description: "Managing card products in traditional banking. While the role has limited tech exposure, I compensate by building tech projects on weekends.",
       achievements: [
@@ -59,8 +58,8 @@ export const portfolioData = {
       title: "Personal Workout Buddy",
       description: "Weekend project: AI-powered fitness companion built to learn modern web development.",
       tech: ["Built with Lovable", "Self-taught", "Weekend Project"],
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800",
-      link: "#"
+      image: "",
+      link: "https://preview--personal-gym-bot.lovable.app/auth"
     },
     {
       id: 2,
