@@ -7,17 +7,17 @@ const ProjectCard = ({ project, gradient }) => {
 
   return (
     <div
-      className="perspective w-full h-full"
+      className={`relative w-full h-96 perspective`}
       onClick={() => setFlipped(!flipped)}
     >
       <div
-        className={`relative w-full h-full transition-transform duration-500 transform-style preserve-3d ${
+        className={`relative w-full h-full transition-transform duration-700 transform-style preserve-3d ${
           flipped ? 'rotate-y-180' : ''
-        }`}
+        } cursor-pointer`}
       >
         {/* Front Side */}
-        <div className="absolute w-full h-full backface-hidden bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md cursor-pointer">
-          <div className="aspect-video relative overflow-hidden">
+        <div className="absolute w-full h-full backface-hidden bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+          <div className="aspect-video bg-slate-100 overflow-hidden relative">
             {project.image ? (
               <img
                 src={project.image}
@@ -26,44 +26,49 @@ const ProjectCard = ({ project, gradient }) => {
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                No Image
+                No Image Available
               </div>
             )}
             <div
-              className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+              className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`}
             ></div>
           </div>
           <div className="p-6">
-            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-            <p className="text-gray-600 text-sm">{project.description}</p>
+            <h3 className="text-2xl font-bold text-slate-900 mb-2">{project.title}</h3>
+            <p className="text-slate-600 leading-relaxed">{project.description}</p>
           </div>
         </div>
 
         {/* Back Side */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-3xl border border-slate-200 shadow-md p-6 flex flex-col justify-between">
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200 p-6 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-            <p className="text-gray-700 text-sm mb-4">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">{project.title}</h3>
+            <p className="text-slate-600 leading-relaxed mb-4">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mb-6">
               {project.tech.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs border border-blue-100"
+                  className="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 text-sm rounded-lg font-medium border border-blue-100"
                 >
                   {tech}
                 </span>
               ))}
             </div>
           </div>
-          {project.link && (
+          {project.link ? (
             <Button
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-2 mt-4 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition-all duration-300 shadow-md hover:shadow-lg"
               onClick={(e) => {
-                e.stopPropagation(); // prevent flip
+                e.stopPropagation();
                 window.open(project.link, '_blank');
               }}
             >
-              Visit Project <ExternalLink className="h-4 w-4" />
+              Visit Project
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          ) : (
+            <Button className="w-full bg-gray-300 text-gray-700 cursor-not-allowed" disabled>
+              No Link Available
             </Button>
           )}
         </div>
