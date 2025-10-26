@@ -6,16 +6,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # Needed for GitHub Pages deployment
+  contents: read
+  pages: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repo
+      # 1. Checkout the repo and persist credentials so deploy actions can push
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       # 2. Set up Python for FastAPI
       - name: Set up Python
@@ -31,17 +34,17 @@ jobs:
 
       # 4. Set up Node.js for React
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
 
       # 5. Install frontend dependencies
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm install --legacy-peer-deps
+          npm ci --legacy-peer-deps
 
-      # 5.5. Fix ajv compatibility for CRACO/webpack
+      # 5.5 Fix ajv compatibility for CRACO/webpack
       - name: Fix ajv dependency
         run: |
           cd frontend
@@ -53,11 +56,9 @@ jobs:
           cd frontend
           npm run build
 
-      # 7. Deploy frontend to GitHub Pages
+      # 7. Deploy frontend to GitHub Pages (non-interactive)
       - name: Deploy frontend to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/build
-          # Optionally, set the branch if you want gh-pages on a branch other than default:
-          # publish_branch: gh-pages
