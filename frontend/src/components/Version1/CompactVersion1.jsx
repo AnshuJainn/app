@@ -123,23 +123,23 @@ const CompactVersion1 = () => {
       </section>
 
       {/* Dynamic Content Section - Full Screen */}
-      <section className="min-h-screen flex flex-col px-4 md:px-6 py-8 md:py-12 bg-gray-50">
+      <section className="min-h-screen flex flex-col px-6 py-12 bg-white">
         <div className="max-w-6xl w-full mx-auto flex-1 flex flex-col">
           {/* Tab Navigation */}
-          <div className="flex justify-center gap-2 md:gap-3 mb-8 md:mb-12 flex-wrap">
+          <div className="flex justify-center gap-3 mb-12 flex-wrap">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => handleTabChange(tab.id)}
-                  className={`flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-medium transition-premium text-sm md:text-base ${
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                     activeTab === tab.id
-                      ? 'bg-black text-white shadow-sm'
-                      : 'bg-white/60 text-gray-500 hover:bg-white hover:text-gray-900 border border-gray-200/50'
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg scale-105'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  <Icon className="h-4 w-4 md:h-5 md:w-5" />
+                  <Icon className="h-5 w-5" />
                   <span className="hidden sm:inline">{tab.label}</span>
                 </button>
               );
@@ -147,11 +147,212 @@ const CompactVersion1 = () => {
           </div>
 
           {/* Dynamic Content Area */}
-          <div className="flex-1 overflow-hidden relative">
-            <div className={!isTransitioning ? getAnimationClass() : 'opacity-0'} key={activeTab}>
-              {/* Content for each tab */}
-              {/* Add your story, experience, projects, contact JSX here exactly as before */}
-            </div>
+          <div className="flex-1 overflow-hidden">
+            {/* Story Tab */}
+            {activeTab === 'story' && (
+              <div className="animate-fadeIn space-y-8">
+                <div className="text-center mb-8">
+                  <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
+                    About Me
+                  </div>
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">My Story</h2>
+                  <p className="text-xl text-slate-600">{portfolioData.story.philosophy}</p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {portfolioData.story.highlights.map((highlight, index) => (
+                    <div key={index} className="bg-gradient-to-br from-white to-slate-50 rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-all duration-300">
+                      <div className="flex gap-4 items-start">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                          <span className="text-white font-bold">{index + 1}</span>
+                        </div>
+                        <p className="text-slate-700 leading-relaxed flex-1">{highlight}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">Skills</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {portfolioData.skills.map((skill, index) => (
+                      <div key={index} className="bg-white rounded-xl p-5 shadow-md border border-slate-100">
+                        <div className="flex justify-between items-baseline mb-3">
+                          <h3 className="text-base font-semibold text-slate-900">{skill.name}</h3>
+                          <span className="text-sm font-bold text-blue-600">{skill.level}%</span>
+                        </div>
+                        <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-1000 ease-out"
+                            style={{ width: `${skill.level}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Experience Tab */}
+            {activeTab === 'experience' && (
+              <div className="animate-fadeIn space-y-6">
+                <div className="text-center mb-8">
+                  <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
+                    Professional Journey
+                  </div>
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">Career Journey</h2>
+                  <p className="text-xl text-slate-600">5+ years in BSFI • MBA Graduate</p>
+                </div>
+                {portfolioData.experience.map((exp) => (
+                  <div key={exp.id} className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-6">
+                      <div className="p-4 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl shadow-lg">
+                        <Briefcase className="h-8 w-8 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start mb-4 flex-wrap gap-4">
+                          <div>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-1">{exp.role}</h3>
+                            <p className="text-lg text-blue-600 font-semibold">{exp.company}</p>
+                          </div>
+                          <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">{exp.period}</span>
+                        </div>
+                        <p className="text-slate-700 mb-6 leading-relaxed">{exp.description}</p>
+                        <div className="space-y-2">
+                          {exp.achievements.map((achievement, idx) => (
+                            <div key={idx} className="flex gap-3 items-start">
+                              <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                              <p className="text-slate-700">{achievement}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Projects Tab */}
+            {activeTab === 'projects' && (
+              <div className="animate-fadeIn">
+                <div className="text-center mb-8">
+                  <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
+                    Portfolio
+                  </div>
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">Weekend Projects</h2>
+                  <p className="text-xl text-slate-600">Built with curiosity on weekends</p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {portfolioData.projects.map((project, index) => {
+                    const gradients = [
+                      'from-blue-500 to-indigo-500',
+                      'from-purple-500 to-pink-500',
+                      'from-green-500 to-emerald-500',
+                      'from-orange-500 to-red-500'
+                    ];
+                    return (
+                      <div key={project.id} className="group bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-slate-200">
+                        <div className="aspect-video bg-slate-100 overflow-hidden relative">
+                          <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index % 4]} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+                        </div>
+                        <div className="p-6">
+                          <h3 className="text-xl font-bold text-slate-900 mb-2">{project.title}</h3>
+                          <p className="text-slate-600 mb-4 text-sm leading-relaxed">{project.description}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tech.map((tech, idx) => (
+                              <span key={idx} className="px-2 py-1 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 text-xs rounded-lg font-medium border border-blue-100">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Contact Tab */}
+            {activeTab === 'contact' && (
+              <div className="animate-fadeIn max-w-4xl mx-auto">
+                <div className="text-center mb-8">
+                  <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
+                    Get In Touch
+                  </div>
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4">Let's Connect</h2>
+                  <p className="text-xl text-slate-600">Open to new opportunities in tech-focused product roles</p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <a href={`mailto:${portfolioData.email}`} className="flex items-center gap-4 p-5 bg-gradient-to-br from-white to-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 group">
+                      <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                        <Mail className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-500">Email</p>
+                        <p className="text-slate-900 font-semibold">{portfolioData.email}</p>
+                      </div>
+                    </a>
+                    <a href={`https://www.linkedin.com/in/anshujainpm/}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 bg-gradient-to-br from-white to-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 group">
+                      <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                        <Linkedin className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-500">LinkedIn</p>
+                        <p className="text-slate-900 font-semibold">Connect with me</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 shadow-md">
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <Input 
+                          type="text" 
+                          placeholder="Your name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          required
+                          className="border-slate-300 focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <Input 
+                          type="email" 
+                          placeholder="anshu.jain@zohomail.in"
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          required
+                          className="border-slate-300 focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <Textarea 
+                          placeholder="Your message..."
+                          rows={4}
+                          value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          required
+                          className="border-slate-300 focus:border-blue-500 resize-none"
+                        />
+                      </div>
+                      <Button 
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-5 transition-all duration-300 hover:scale-105 shadow-md"
+                      >
+                        Send Message
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
