@@ -341,4 +341,4 @@ const Vibrant = () => {
   );
 };
 
-export default CompactVersion2;
+export default Vibrant;
