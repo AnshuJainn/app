@@ -68,3 +68,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/build
+          external_repository: AnshuJainn/website
+
