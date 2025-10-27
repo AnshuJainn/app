@@ -137,7 +137,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ChooseDesign />} />
             <Route path="/version1" element={<CompactVersion1 />} />
-            <Route path="/version2" element={<CompactVersion2 />} />
+            <Route path="/version2" element={<Vibrant />} />
             <Route path="/resume" element={<Resume />} />
           </Routes>
         </CommandMenuProvider>
