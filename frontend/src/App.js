@@ -2,7 +2,7 @@ import "./App.css";
 import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
 import React from "react";
 import CompactVersion1 from "./components/Version1/CompactVersion1";
-import CompactVersion2 from "./components/Version2/CompactVersion2";
+import Vibrant from "./components/Version2/Vibrant";
 import { Button } from "./components/ui/button";
 import { ArrowRight } from "lucide-react";
 import GlobalCommandMenu from "./components/GlobalCommandMenu";
